@@ -346,16 +346,16 @@ namespace MatrixApp
       return transposedMatrix;
     }
 
-    public double TraceMatrix(Matrix givenMatrix)
+    public double TraceMatrix()
     {
       double sumElementsDiag = 0;
-      for (int row = 0; row < givenMatrix.matrixRow; ++row)
+      for (int row = 0; row < matrixRow; ++row)
       {
-        for (int column = 0; column < givenMatrix.matrixColumn; ++column)
+        for (int column = 0; column < matrixColumn; ++column)
         {
-          if (givenMatrix.matrix[row, column] == givenMatrix.matrix[row, column])
+          if (row == column)
           {
-            sumElementsDiag += givenMatrix.matrix[row, column];
+            sumElementsDiag += matrix[row, column];
           }
         }
       }
