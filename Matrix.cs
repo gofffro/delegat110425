@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
@@ -331,7 +332,7 @@ namespace MatrixApp
       return subMatrix.Determinant();
     }
 
-    private Matrix Transpose(Matrix originalMatrix)
+    public Matrix Transpose(Matrix originalMatrix)
     {
       Matrix transposedMatrix = new Matrix(originalMatrix.matrixRow, originalMatrix.matrixColumn);
 
@@ -343,6 +344,22 @@ namespace MatrixApp
         }
       }
       return transposedMatrix;
+    }
+
+    public double TraceMatrix(Matrix givenMatrix)
+    {
+      double sumElementsDiag = 0;
+      for (int row = 0; row < givenMatrix.matrixRow; ++row)
+      {
+        for (int column = 0; column < givenMatrix.matrixColumn; ++column)
+        {
+          if (givenMatrix.matrix[row, column] == givenMatrix.matrix[row, column])
+          {
+            sumElementsDiag += givenMatrix.matrix[row, column];
+          }
+        }
+      }
+      return sumElementsDiag;
     }
 
     public object Clone()
