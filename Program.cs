@@ -45,7 +45,6 @@ namespace MatrixApp
           return diagonalizedMatrix;
         };
 
-        // Создаем цепочку обработчиков
         var handlerChain = BuildHandlerChain(diagonalize);
 
         while (true)
@@ -58,7 +57,7 @@ namespace MatrixApp
           string menuMethod = Console.ReadLine();
           Console.Clear();
 
-          // Передаем управление цепочке обработчиков
+
           handlerChain.Handle(matrixA, matrixB, cloneMatrixA, cloneMatrixB, menuMethod);
         }
       }
