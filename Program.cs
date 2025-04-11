@@ -4,8 +4,10 @@ namespace MatrixApp
 {
   internal class Program
   {
+    private delegate Matrix DiagonalizeDelegate(Matrix matrix);
     static void Main(string[] args)
     {
+
       try
       {
         Console.Write("Матрица A");
@@ -17,6 +19,31 @@ namespace MatrixApp
         Matrix matrixB = CreateMatrix();
         Matrix cloneMatrixB = matrixB.DeepCopy();
         Console.WriteLine(matrixB);
+
+        DiagonalizeDelegate diagonalize = (Matrix m) =>
+        {
+          double[,] array = new double[m.matrixRow, m.matrixColumn];
+          for (int row = 0; row < m.matrixRow; ++row)
+          {
+            for (int column = 0; column < m.matrixColumn; ++column)
+            {
+              array[row, column] = m.matrix[row, column];
+            }
+          }
+
+          double[,] diagonalizedArray = QRDecomposition.Diagonalize(array);
+
+          Matrix diagonalizedMatrix = new Matrix(diagonalizedArray.GetLength(0), diagonalizedArray.GetLength(1));
+          for (int row = 0; row < diagonalizedArray.GetLength(0); ++row)
+          {
+            for (int column = 0; column < diagonalizedArray.GetLength(1); ++column)
+            {
+              diagonalizedMatrix.matrix[row, column] = diagonalizedArray[row, column];
+            }
+          }
+
+          return diagonalizedMatrix;
+        };
 
         string menuMethod;
         while (true)
@@ -40,6 +67,8 @@ namespace MatrixApp
           Console.WriteLine("13 - Обратная матрица B");
           Console.WriteLine("14 - Демонстрация глубокого копирования");
           Console.WriteLine("15 - Найти след матриц (сумма элементов диагонали)");
+          Console.WriteLine("16 - Привести матрицу A к диагональному виду");
+          Console.WriteLine("17 - Привести матрицу B к диагональному виду");
           Console.WriteLine("0 - Выход");
           Console.Write("Ввод: ");
           menuMethod = Console.ReadLine();
@@ -105,6 +134,12 @@ namespace MatrixApp
             case "15":
               Console.WriteLine($"След матрицы A = {matrixA.TraceMatrix()}");
               Console.WriteLine($"След матрицы B = {matrixB.TraceMatrix()}");
+              break;
+            case "16":
+              Console.WriteLine("Матрица A в диагональном виде:\n" + diagonalize(matrixA));
+              break;
+            case "17":
+              Console.WriteLine("Матрица B в диагональном виде:\n" + diagonalize(matrixB));
               break;
             default:
               Console.WriteLine("Некорректный ввод.");
