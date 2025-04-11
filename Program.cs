@@ -73,6 +73,7 @@ namespace MatrixApp
     private static IMatrixHandler BuildHandlerChain(DiagonalizeDelegate diagonalize)
     {
       var addHandler = new AddMatricesHandler();
+
       var multiplyHandler = new MultiplyMatricesHandler();
       var scalarMultiplyAHandler = new ScalarMultiplyAHandler();
       var scalarMultiplyBHandler = new ScalarMultiplyBHandler();
@@ -83,12 +84,15 @@ namespace MatrixApp
 
       var determinantAHandler = new DeterminantAHandler();
       var determinantBHandler = new DeterminantBHandler();
+
       var traceHandler = new TraceHandler();
+
       var hashCodeAHandler = new HashCodeAHandler();
       var hashCodeBHandler = new HashCodeBHandler();
 
       var inverseAHandler = new InverseAHandler();
       var inverseBHandler = new InverseBHandler();
+
       var deepCopyDemoHandler = new DeepCopyDemoHandler();
 
       var diagonalizeAHandler = new DiagonalizeAHandler(diagonalize);
