@@ -19,7 +19,6 @@ namespace MatrixApp
           break;
         }
       }
-
       return workingMatrix;
     }
 
@@ -81,7 +80,6 @@ namespace MatrixApp
           orthogonalMatrix[row, column] /= norm;
         }
       }
-
       return (orthogonalMatrix, upperTriangularMatrix);
     }
 
@@ -104,7 +102,6 @@ namespace MatrixApp
           resultMatrix[row, column] = sum;
         }
       }
-
       return resultMatrix;
     }
   }
