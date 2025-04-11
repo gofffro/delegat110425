@@ -346,6 +346,29 @@ namespace MatrixApp
       return transposedMatrix;
     }
 
+    private double[,] Transpose(double[,] matrix)
+    {
+      double[,] transposedMatrix = new double[matrixColumn, matrixRow];
+      for (int row = 0; row < matrixRow; ++row)
+      {
+        for (int column = 0; column < matrixColumn; ++column)
+        {
+          transposedMatrix[column, row] = matrix[row, column];
+        }
+      }
+      return transposedMatrix;
+    }
+
+    private bool IsSymmetric()
+    {
+      if (matrix == Transpose(matrix))
+      {
+        return true;
+      }
+      return false;
+    }
+   
+
     public double TraceMatrix()
     {
       double sumElementsDiag = 0;

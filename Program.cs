@@ -39,6 +39,7 @@ namespace MatrixApp
           Console.WriteLine("12 - Обратная матрица A");
           Console.WriteLine("13 - Обратная матрица B");
           Console.WriteLine("14 - Демонстрация глубокого копирования");
+          Console.WriteLine("15 - Найти след матриц (сумма элементов диагонали)");
           Console.WriteLine("0 - Выход");
           Console.Write("Ввод: ");
           menuMethod = Console.ReadLine();
@@ -100,6 +101,10 @@ namespace MatrixApp
               matrixA.EntryMatrix();
               Console.WriteLine("Матрица A(после изменения):\n" + matrixA);
               Console.WriteLine("Клон матрицы (после изменения):\n" + cloneMatrixA);
+              break;
+            case "15":
+              Console.WriteLine($"След матрицы A = {matrixA.TraceMatrix()}");
+              Console.WriteLine($"След матрицы B = {matrixB.TraceMatrix()}");
               break;
             default:
               Console.WriteLine("Некорректный ввод.");
