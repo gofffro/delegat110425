@@ -41,7 +41,6 @@ namespace MatrixApp
               diagonalizedMatrix.matrix[row, column] = diagonalizedArray[row, column];
             }
           }
-
           return diagonalizedMatrix;
         };
 
@@ -73,24 +72,29 @@ namespace MatrixApp
 
     private static IMatrixHandler BuildHandlerChain(DiagonalizeDelegate diagonalize)
     {
-      var exitHandler = new ExitHandler();
       var addHandler = new AddMatricesHandler();
       var multiplyHandler = new MultiplyMatricesHandler();
       var scalarMultiplyAHandler = new ScalarMultiplyAHandler();
       var scalarMultiplyBHandler = new ScalarMultiplyBHandler();
+
       var compareGreaterHandler = new CompareGreaterHandler();
       var compareLessHandler = new CompareLessHandler();
+      var equalsHandler = new EqualsHandler();
+
       var determinantAHandler = new DeterminantAHandler();
       var determinantBHandler = new DeterminantBHandler();
+      var traceHandler = new TraceHandler();
       var hashCodeAHandler = new HashCodeAHandler();
       var hashCodeBHandler = new HashCodeBHandler();
-      var equalsHandler = new EqualsHandler();
+
       var inverseAHandler = new InverseAHandler();
       var inverseBHandler = new InverseBHandler();
       var deepCopyDemoHandler = new DeepCopyDemoHandler();
-      var traceHandler = new TraceHandler();
+
       var diagonalizeAHandler = new DiagonalizeAHandler(diagonalize);
       var diagonalizeBHandler = new DiagonalizeBHandler(diagonalize);
+
+      var exitHandler = new ExitHandler();
 
       addHandler.SetNext(multiplyHandler)
                .SetNext(scalarMultiplyAHandler)
