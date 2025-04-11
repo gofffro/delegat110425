@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,9 @@ namespace MatrixApp
 {
   public class Matrix : ICloneable, IComparable<Matrix>
   {
-    int matrixRow;
-    int matrixColumn;
-    double[,] matrix;
+    public int matrixRow;
+    public int matrixColumn;
+    public double[,] matrix;
 
     public Matrix(int matrixRow, int matrixColumn)
     {
@@ -331,7 +332,7 @@ namespace MatrixApp
       return subMatrix.Determinant();
     }
 
-    private Matrix Transpose(Matrix originalMatrix)
+    public Matrix Transpose(Matrix originalMatrix)
     {
       Matrix transposedMatrix = new Matrix(originalMatrix.matrixRow, originalMatrix.matrixColumn);
 
@@ -343,6 +344,45 @@ namespace MatrixApp
         }
       }
       return transposedMatrix;
+    }
+
+    private double[,] Transpose(double[,] matrix)
+    {
+      double[,] transposedMatrix = new double[matrixColumn, matrixRow];
+      for (int row = 0; row < matrixRow; ++row)
+      {
+        for (int column = 0; column < matrixColumn; ++column)
+        {
+          transposedMatrix[column, row] = matrix[row, column];
+        }
+      }
+      return transposedMatrix;
+    }
+
+    private bool IsSymmetric()
+    {
+      if (matrix == Transpose(matrix))
+      {
+        return true;
+      }
+      return false;
+    }
+   
+
+    public double TraceMatrix()
+    {
+      double sumElementsDiag = 0;
+      for (int row = 0; row < matrixRow; ++row)
+      {
+        for (int column = 0; column < matrixColumn; ++column)
+        {
+          if (row == column)
+          {
+            sumElementsDiag += matrix[row, column];
+          }
+        }
+      }
+      return sumElementsDiag;
     }
 
     public object Clone()
