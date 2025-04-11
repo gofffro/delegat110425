@@ -11,9 +11,9 @@ namespace MatrixApp
 {
   public class Matrix : ICloneable, IComparable<Matrix>
   {
-    int matrixRow;
-    int matrixColumn;
-    double[,] matrix;
+    public int matrixRow;
+    public int matrixColumn;
+    public double[,] matrix;
 
     public Matrix(int matrixRow, int matrixColumn)
     {
